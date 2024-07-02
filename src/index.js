@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { BaseColourProvider } from './contexts/baseColourContext';
+import { CurrentThemeProvider } from './contexts/currentThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <BaseColourProvider>
-        <App />
+        <CurrentThemeProvider>
+          <App />
+        </CurrentThemeProvider>
       </BaseColourProvider> 
     </BrowserRouter>
   </React.StrictMode>

@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "react-use";
+import { useBaseColourGlobalData } from "./baseColourContext";
+import { generateTones } from "../functions/themeGenerator";
 
 
 export const CurrentThemeDataContext = createContext([]);
@@ -16,7 +18,14 @@ export function useCurrentThemeDispatch(){
 export function CurrentThemeProvider({children}){
     let [currentTheme, setCurrentTheme] = useState([]);
 
-    let [currentThemeLocalStorage, setCurrentThemeLocalStorage] = useLocalStorage("css-basecolour", "#000000");
+    let [currentThemeLocalStorage, setCurrentThemeLocalStorage] = useLocalStorage("css-currentTheme", []);
+
+    let baseColour = useBaseColourGlobalData();
+
+    useEffect(() => {
+        setCurrentTheme(generateTones(baseColour));
+    }, [baseColour]);
+
 
     useEffect(() => {
         // On component load, read from localstorage and set it to state
@@ -31,7 +40,7 @@ export function CurrentThemeProvider({children}){
     }, [currentTheme]);
 
     return (
-        <CurrentThemeDataContext.Provider value={currentThem}>
+        <CurrentThemeDataContext.Provider value={currentTheme}>
             <CurrentThemeDispatchContext.Provider value={setCurrentTheme}>
                 {children}
             </CurrentThemeDispatchContext.Provider>

@@ -9,8 +9,8 @@ export default function Header(){
         </div>
         <nav id="headerNavbar">
             <NavLink to={"/"}>Home</NavLink>
-            {/* <NavLink to={"/generator"}>Generator</NavLink>
-            <Navlink to={"/generator/saved"}>Saved Themes</Navlink> */}
+            <NavLink to={"/generator"}>Generator</NavLink>
+            {/* <Navlink to={"/generator/saved"}>Saved Themes</Navlink> */}
         </nav>
     </>)
 }

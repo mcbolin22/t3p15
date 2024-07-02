@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useBaseColourGlobalData, useBaseColourGlobalDispatch } from "../contexts/baseColourContext";
 import { Sketch } from "@uiw/react-color";
+import { ColourBlock } from "../components/ColourBlock";
+import { useCurrentThemeData } from "../contexts/currentThemeContext";
 
 
 export default function GeneratorPage(){
@@ -11,6 +13,8 @@ export default function GeneratorPage(){
     // Base colour from global state
     let baseColourGlobal = useBaseColourGlobalData();
     let setBaseColourGlobal = useBaseColourGlobalDispatch();
+
+    let currentTheme = useCurrentThemeData();
 
     // On component mount, set local form value to global state value
     useEffect(() => {
@@ -29,7 +33,10 @@ export default function GeneratorPage(){
             {/* <input type="color" name="" id="" /> */}
             <Sketch color={formBaseColour} onChange={(colour) => setFormBaseColour(colour.hex)} />
 
-            {/* CSS theme generator component */}
+            {/* CSS theme display component */}
+            {currentTheme.colours?.map((colourEntry, index) => {
+                return <ColourBlock key={currentTheme.name + index} colourEntry={colourEntry} />
+            })}
         </div>
     )
 }

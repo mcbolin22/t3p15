@@ -3,18 +3,26 @@ import { useBaseColourGlobalData, useBaseColourGlobalDispatch } from "../context
 import { Sketch } from "@uiw/react-color";
 import { ColourBlock } from "../components/ColourBlock";
 import { useCurrentThemeData } from "../contexts/currentThemeContext";
+import PureModal from 'react-pure-modal';
+import 'react-pure-modal/dist/react-pure-modal.min.css';
+
+
+
+
 
 
 export default function GeneratorPage(){
 
-    // Base colour from form
-    let [formBaseColour, setFormBaseColour] = useState("#000000");
+    const [modal, setModal] = useState(false);
 
     // Base colour from global state
     let baseColourGlobal = useBaseColourGlobalData();
     let setBaseColourGlobal = useBaseColourGlobalDispatch();
 
     let currentTheme = useCurrentThemeData();
+
+    // Base colour from form
+    let [formBaseColour, setFormBaseColour] = useState(baseColourGlobal);
 
     // On component mount, set local form value to global state value
     useEffect(() => {
@@ -28,6 +36,28 @@ export default function GeneratorPage(){
 
     return(
         <div>
+            <PureModal
+                header="Your header"
+                footer={
+                    <div>
+                    <button>Cancel</button>
+                    <button>Save</button>
+                    </div>
+                }
+                isOpen={modal}
+                closeButton="close"
+                closeButtonPosition="bottom"
+                onClose={() => {
+                    setModal(false);
+                    return true;
+                }}
+                >
+                <p>Your content</p>
+            </PureModal>;
+            <button onClick={() => setModal(!modal)}>
+                Toggle Modal
+            </button>
+
             {/* Base colour input form */}
             <h1>{formBaseColour}</h1>
             {/* <input type="color" name="" id="" /> */}

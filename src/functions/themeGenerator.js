@@ -13,7 +13,8 @@ export function generateTones(baseColour, themeName=""){
     let rawPalettenOutput = paletten(baseColour);
 
     let finalisedOutput = {
-        name: newThemeName,
+        name: newThemeName, // fern-green
+        displayName: themeName || colorblender(baseColour).name(), // Fern Green
         colours: []
     }
 

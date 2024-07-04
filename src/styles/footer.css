@@ -1,0 +1,9 @@
+footer {
+    justify-self: flex-end;
+    background-color: rgb(233, 195, 93);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10dvw;
+}

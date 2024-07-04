@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { BaseColourProvider } from './contexts/baseColourContext';
 import { CurrentThemeProvider } from './contexts/currentThemeContext';
+import { DarkModeProvider } from './contexts/darkModeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <BrowserRouter>
       <BaseColourProvider>
         <CurrentThemeProvider>
-          <App />
+          <DarkModeProvider>
+            <App />
+          </DarkModeProvider>
         </CurrentThemeProvider>
       </BaseColourProvider> 
     </BrowserRouter>

@@ -17,6 +17,11 @@ header {
         * {
             margin-left: 5rem;
             text-decoration: none;
+            padding: 1rem;
+        }
+
+        *:hover {
+            background-color: darkturquoise;
         }
     }
 }
